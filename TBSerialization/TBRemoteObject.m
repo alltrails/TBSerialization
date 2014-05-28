@@ -25,7 +25,9 @@
     if (self) {
         _localObjectClass = localObjectClass;
         _remoteObjectDictionary = remoteObjectDictionary;
-        _map = [localObjectClass localToRemoteMap];
+        if ([_localObjectClass conformsToProtocol:@protocol(TBSerializable)]) {
+            _map = [localObjectClass localToRemoteMap];
+        }
     }
 
     return self;
